@@ -3,27 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>Nossas Memórias</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
       background: black;
       font-family: sans-serif;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
     .container {
       position: relative;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 1;
       flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     img {
-      max-width: 90vw;
-      max-height: 90vh;
+      width: 100%;
+      max-width: 600px;
+      height: auto;
       border-radius: 20px;
       box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
       object-fit: cover;
@@ -33,13 +38,10 @@
     }
 
     .caption {
-      position: absolute;
-      bottom: 70px;
-      left: 0;
-      right: 0;
-      text-align: center;
+      margin-top: 20px;
       color: white;
       font-size: 2rem;
+      text-align: center;
       text-shadow: 0 0 10px black;
       z-index: 3;
       font-weight: 1000;
@@ -64,6 +66,8 @@
       animation: fadeIn 2s ease forwards;
       box-sizing: border-box;
       word-wrap: break-word;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
     }
 
     @keyframes fadeIn {
@@ -83,12 +87,24 @@
         font-size: 1.6rem;
         padding: 15px;
       }
+
+      .caption {
+        font-size: 1.5rem;
+      }
+
+      img {
+        max-width: 90vw;
+      }
     }
 
     @media (max-width: 480px) {
       .text-break {
         font-size: 1.2rem;
         padding: 10px;
+      }
+
+      .caption {
+        font-size: 1.2rem;
       }
     }
 
