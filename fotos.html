@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Nossas Memórias</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      flex-direction: column;
+    }
+
+    img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+      object-fit: cover;
+      transition: opacity 1s;
+      position: relative;
+      z-index: 2;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: white;
+      font-size: 1.2rem;
+      text-shadow: 0 0 10px black;
+      z-index: 3;
+    }
+
+    .text-break {
+      color: white;
+      font-size: 2rem;
+      text-align: center;
+      text-shadow: 0 0 10px black;
+      display: none;
+      z-index: 4;
+    }
+
+    audio {
+      display: none;
+    }
+
+    .heart {
+      position: fixed;
+      font-size: 24px;
+      color: #ff4d6d;
+      animation: float 6s linear infinite;
+      opacity: 0.8;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio autoplay loop>
+    <source src="https://dl.sndup.net/9w54/Photograph%20-%20Ed%20Sheeran%20(Piano%20Cover).mp3" type="audio/mp3">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <div class="container">
+    <img id="photo" src="1.jpg" alt="Momentos especiais">
+    <div class="caption" id="caption">Eu te amo, meu amor</div>
+    <div class="text-break" id="textBreak">ferrari é um bosta</div>
+  </div>
+
+  <script>
+    const images = [
+      { src: '11.jpg', caption: 'Eu te amo, meu amor' },
+      { src: '2.jpg', caption: 'Amo seus olhos' },
+      { src: '3.jpg', caption: 'Amo sua boca' },
+      { src: '4.jpg', caption: 'Amo seu abraço' },
+      { src: '5.jpg', caption: 'Amo seu cabelo' },
+      { src: '6.jpg', caption: 'Amo cada pedaço seu' }
+    ];
+
+    let index = 0;
+    const photo = document.getElementById('photo');
+    const caption = document.getElementById('caption');
+    const textBreak = document.getElementById('textBreak');
+
+    function showNextImage() {
+      index++;
+
+      if (index >= images.length) {
+        // Última imagem exibida, pausa de 1 minuto
+        photo.style.opacity = 0;
+        caption.style.opacity = 0;
+        textBreak.style.display = 'block';
+
+        setTimeout(() => {
+          index = 0;
+          textBreak.style.display = 'none';
+          photo.src = images[index].src;
+          caption.textContent = images[index].caption;
+          photo.style.opacity = 1;
+          caption.style.opacity = 1;
+        }, 60000); // 1 minuto = 60.000 ms
+      } else {
+        photo.style.opacity = 0;
+        caption.style.opacity = 0;
+        setTimeout(() => {
+          photo.src = images[index].src;
+          caption.textContent = images[index].caption;
+          photo.style.opacity = 1;
+          caption.style.opacity = 1;
+        }, 1000);
+      }
+    }
+
+    setInterval(showNextImage, 5000);
+
+  </script>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '💖';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (Math.random() * 30 + 10) + 'px';
+      heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
