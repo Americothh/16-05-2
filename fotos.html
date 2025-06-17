@@ -3,32 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Nossas Memórias</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
       background: black;
       font-family: sans-serif;
-      overflow-x: hidden;
-      overflow-y: auto;
+      overflow: hidden;
     }
 
     .container {
       position: relative;
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 1;
       flex-direction: column;
-      padding: 20px;
-      box-sizing: border-box;
     }
 
     img {
-      width: 100%;
-      max-width: 600px;
-      height: auto;
+      max-width: 90vw;
+      max-height: 90vh;
       border-radius: 20px;
       box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
       object-fit: cover;
@@ -38,10 +33,13 @@
     }
 
     .caption {
-      margin-top: 20px;
+      position: absolute;
+      bottom: 70px;
+      left: 0;
+      right: 0;
+      text-align: center;
       color: white;
       font-size: 2rem;
-      text-align: center;
       text-shadow: 0 0 10px black;
       z-index: 3;
       font-weight: 1000;
@@ -53,21 +51,21 @@
       left: 50%;
       transform: translate(-50%, -50%);
       color: white;
-      font-size: 2.5rem;
-      text-align: center;
+      font-size: 1.6rem;
+      text-align: left;
       text-shadow: 0 0 10px black;
       display: none;
       z-index: 4;
       font-weight: 1000;
       padding: 20px;
-      max-width: 90vw;
-      line-height: 1.5;
-      opacity: 0;
-      animation: fadeIn 2s ease forwards;
+      width: 80vw;
+      max-height: 90vh;
+      overflow-y: auto;
+      line-height: 1.6;
+      border-radius: 15px;
       box-sizing: border-box;
-      word-wrap: break-word;
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 20px;
+      animation: fadeIn 2s ease forwards;
+      background: rgba(0, 0, 0, 0.6);
     }
 
     @keyframes fadeIn {
@@ -84,27 +82,17 @@
     /* Responsividade */
     @media (max-width: 768px) {
       .text-break {
-        font-size: 1.6rem;
+        font-size: 1.2rem;
         padding: 15px;
-      }
-
-      .caption {
-        font-size: 1.5rem;
-      }
-
-      img {
-        max-width: 90vw;
+        width: 90vw;
       }
     }
 
     @media (max-width: 480px) {
       .text-break {
-        font-size: 1.2rem;
-        padding: 10px;
-      }
-
-      .caption {
-        font-size: 1.2rem;
+        font-size: 1rem;
+        padding: 12px;
+        width: 94vw;
       }
     }
 
