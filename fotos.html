@@ -64,8 +64,19 @@
       line-height: 1.5;
       border-radius: 15px;
       box-sizing: border-box;
+      animation: fadeIn 2s ease forwards;
       background: rgba(0, 0, 0, 0.6);
-      white-space: pre-line;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -45%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
     }
 
     @media (max-width: 768px) {
@@ -121,7 +132,10 @@
 
   <div class="container">
     <img id="photo" src="1.jpg" alt="Momentos especiais">
-    <div class="text-break" id="textBreak"></div>
+    <div class="text-break" id="textBreak">
+      Oii, meu amor, sei que nosso dia já passou e eu não consegui te entregar isso antes, mas, com tanta coisa acontecendo, acabei não conseguindo acabar a tempo. Sei que já gravei um áudio falando o que eu sentia e o quão importante você é na minha vida, mas quero que saiba que eu te amo muito, e não há palavras no mundo para descrever o meu amor por você. Eu queria poder te abraçar, poder te ver, ficar com você, andar de mãos dadas, sair com você. Eu queria viver com você, não só por mensagens, mas pessoalmente também. Sei que, por enquanto, não conseguimos ter esses privilégios, mas sei que nosso relacionamento é da vontade de Jeová, então, com o tempo, vamos ter mais liberdade e respeito. Meu amor, saiba que eu te amo muito, e saiba também que você ainda vai ser a minha esposa e mãe dos meus filhos.<br><br>
+      Eu te amo, Maria.
+    </div>
     <div class="caption" id="caption">Eu te amo, meu amor</div>
   </div>
 
@@ -135,10 +149,6 @@
       { src: '6.jpg', caption: 'Amo cada pedaço seu' }
     ];
 
-    const finalText = `Oii, meu amor, sei que nosso dia já passou e eu não consegui te entregar isso antes, mas, com tanta coisa acontecendo, acabei não conseguindo acabar a tempo. Sei que já gravei um áudio falando o que eu sentia e o quão importante você é na minha vida, mas quero que saiba que eu te amo muito, e não há palavras no mundo para descrever o meu amor por você. Eu queria poder te abraçar, poder te ver, ficar com você, andar de mãos dadas, sair com você. Eu queria viver com você, não só por mensagens, mas pessoalmente também. Sei que, por enquanto, não conseguimos ter esses privilégios, mas sei que nosso relacionamento é da vontade de Jeová, então, com o tempo, vamos ter mais liberdade e respeito. Meu amor, saiba que eu te amo muito, e saiba também que você ainda vai ser a minha esposa e mãe dos meus filhos.
-
-Eu te amo, Maria.`;
-
     let index = 0;
     const photo = document.getElementById('photo');
     const caption = document.getElementById('caption');
@@ -150,11 +160,17 @@ Eu te amo, Maria.`;
       if (index >= images.length) {
         photo.style.opacity = 0;
         caption.style.opacity = 0;
+
         textBreak.style.display = 'block';
 
-        // Inicia o efeito de digitação
-        typeText(finalText, textBreak, 0, 25);
-
+        setTimeout(() => {
+          index = 0;
+          textBreak.style.display = 'none';
+          photo.src = images[index].src;
+          caption.textContent = images[index].caption;
+          photo.style.opacity = 1;
+          caption.style.opacity = 1;
+        }, 60000); // 1 minuto
       } else {
         photo.style.opacity = 0;
         caption.style.opacity = 0;
@@ -164,15 +180,6 @@ Eu te amo, Maria.`;
           photo.style.opacity = 1;
           caption.style.opacity = 1;
         }, 1000);
-      }
-    }
-
-    function typeText(text, element, i, speed) {
-      if (i < text.length) {
-        element.textContent += text.charAt(i);
-        setTimeout(() => {
-          typeText(text, element, i + 1, speed);
-        }, speed);
       }
     }
 
